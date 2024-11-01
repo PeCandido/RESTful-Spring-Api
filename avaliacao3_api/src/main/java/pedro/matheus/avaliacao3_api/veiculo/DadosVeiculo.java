@@ -1,5 +1,16 @@
 package pedro.matheus.avaliacao3_api.veiculo;
 
-public record DadosVeiculo(String marca, String modelo, String ano, String cor) {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
+public record DadosVeiculo(
+        @NotBlank
+        String marca,
+        @NotBlank
+        String modelo,
+        @NotBlank
+        @Pattern(regexp = "^\\d{4}$")
+        String ano,
+        @NotBlank
+        String cor) {
 }

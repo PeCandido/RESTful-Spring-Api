@@ -11,14 +11,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Mecanico {
-
-    @NotBlank
     private String nome;
-
     private int experiencia;
 
     public Mecanico(DadosMecanico dados){
         this.nome = dados.nome();
         this.experiencia = dados.experiencia();
+    }
+
+    public void atualizarInformacoes(DadosMecanico dados) {
+        if(dados.nome() != null) this.nome = dados.nome();
+        if(dados.experiencia() >= 0) this.experiencia = dados.experiencia();
     }
 }

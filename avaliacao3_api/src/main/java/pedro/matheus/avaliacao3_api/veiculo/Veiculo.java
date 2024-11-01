@@ -12,19 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Veiculo {
-
-    @NotBlank
     private String marca;
-
-    @NotBlank
     private String modelo;
-
-    @NotBlank
-    @Pattern(regexp = "^\\d{4}$")
     private String ano;
-
     private String cor;
-
 
     public Veiculo(DadosVeiculo dados){
         this.marca = dados.marca();

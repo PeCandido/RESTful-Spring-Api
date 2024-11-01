@@ -21,27 +21,26 @@ public class Conserto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotBlank
-    @Pattern(regexp = "^\\d{2}/\\d{2}/\\d{4}$")
     private String entrada;
-
-    @NotBlank
-    @Pattern(regexp = "^\\d{2}/\\d{2}/\\d{4}$")
     private String saida;
-
-    @Embedded
-    @Valid
     private Veiculo veiculo;
-
-    @Embedded
-    @Valid
     private Mecanico mecanico;
+    private boolean ativo;
 
     public Conserto(DadosConserto dados){
         this.entrada = dados.entrada();
         this.saida = dados.saida();
         this.veiculo = new Veiculo(dados.veiculo());
         this.mecanico = new Mecanico(dados.mecanico());
+        this.ativo = true;
+    }
+
+    public void atualizarinformacoes(DadosAtualizacaoConserto dados) {
+        if(dados.saida() != null) this.saida = dados.saida();
+        if(dados.mecanico() != null) this.mecanico.atualizarInformacoes(dados.mecanico());
+    }
+
+    public void excluir() {
+        this.ativo = false;
     }
 }
